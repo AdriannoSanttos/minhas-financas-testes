@@ -1,0 +1,53 @@
+using System.Net.Http;
+using System.Text;
+using System.Text.Json;
+using System.Threading.Tasks;
+using Microsoft.AspNetCore.Mvc.Testing;
+using Xunit;
+
+namespace MinhasFinancas.IntegrationTests;
+
+public class CascataTests : IClassFixture<WebApplicationFactory<MinhasFinancas.API.Program>>
+{
+    private readonly HttpClient _client;
+
+    public CascataTests(WebApplicationFactory<MinhasFinancas.API.Program> factory)
+    {
+        _client = factory.CreateClient();
+    }
+
+    [Fact]
+    public async Task ExcluirPessoa_DeveRemoverSuasTransacoes()
+    {
+        var pessoaId = await CriarPessoa("Joao");
+        var transacaoId = await CriarTransacao(pessoaId, "Compra", 100);
+
+        var deleteResponse = await _client.DeleteAsync($"/api/pessoas/{pessoaId}");
+        deleteResponse.EnsureSuccessStatusCode();
+
+        var getResponse = await _client.GetAsync($"/api/transacoes/{transacaoId}");
+        Assert.Equal(System.Net.HttpStatusCode.NotFound, getResponse.StatusCode);
+    }
+
+    private async Task<string> CriarPessoa(string nome)
+    {
+        var payload = new { nome };
+        var content = new StringContent(JsonSerializer.Serialize(payload), Encoding.UTF8, "application/json");
+        var response = await _client.PostAsync("/api/pessoas", content);
+        response.EnsureSuccessStatusCode();
+        var json = await response.Content.ReadAsStringAsync();
+        using var doc = JsonDocument.Parse(json);
+        return doc.RootElement.GetProperty("id").GetString();
+    }
+
+    private async Task<string> CriarTransacao(string pessoaId, string descricao, decimal valor)
+    {
+        var payload = new { descricao, valor, data = "2025-01-01", tipo = "Despesa", categoriaId = "00000000-0000-0000-0000-000000000001", pessoaId };
+        var content = new StringContent(JsonSerializer.Serialize(payload), Encoding.UTF8, "application/json");
+        var response = await _client.PostAsync("/api/transacoes", content);
+        response.EnsureSuccessStatusCode();
+        var json = await response.Content.ReadAsStringAsync();
+        using var doc = JsonDocument.Parse(json);
+        return doc.RootElement.GetProperty("id").GetString();
+    }
+}
