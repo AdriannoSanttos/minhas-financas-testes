@@ -117,3 +117,4 @@ C:\Users\santo\Documents\minhas-financas-testes\tests\unit\MinhasFinancas.UnitTe
 C:\Users\santo\Documents\minhas-financas-testes\tests\unit\MinhasFinancas.UnitTests\obj\Debug\net10.0\MinhasFinancas.UnitTests.pdb
 C:\Users\santo\Documents\minhas-financas-testes\tests\unit\MinhasFinancas.UnitTests\obj\Debug\net10.0\MinhasFinancas.UnitTests.genruntimeconfig.cache
 C:\Users\santo\Documents\minhas-financas-testes\tests\unit\MinhasFinancas.UnitTests\obj\Debug\net10.0\ref\MinhasFinancas.UnitTests.dll
+C:\Users\santo\Documents\minhas-financas-testes\tests\unit\MinhasFinancas.UnitTests\obj\Debug\net10.0\MinhasFinancas.UnitTests.sourcelink.json
