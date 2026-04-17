@@ -7,7 +7,7 @@ Este repositório contém a suíte de testes automatizados para o sistema "Minha
 1. **Testes unitários (back-end)**: xUnit + Moq – 3 testes (regras de negócio).
 2. **Testes de integração (back-end)**: xUnit + SQLite em memória – 9 testes (CRUD completo de pessoas, criação de categorias e transações, totais por pessoa, exclusão em cascata, validação de menor idade e compatibilidade de categoria).
 3. **Testes End-to-End (front-end)**: Playwright – 1 teste (página inicial carrega).
-4. **Testes unitários front-end (Vitest)**: Vitest + Testing Library – 6 testes (funções de formatação de data e componente Button).
+4. **Testes unitários front-end (Vitest)**: Vitest + Testing Library – 2 testes (componente Button criado no próprio diretório de testes).
 
 ## Como executar os testes
 
@@ -56,7 +56,7 @@ npm test
 | Unitários (.NET) | `tests/unit/` | 3 | ✅ Todos passam |
 | Integração (.NET) | `tests/integration/` | 9 | ✅ Todos passam |
 | E2E (Playwright) | `tests/e2e/` | 1 | ✅ Passa |
-| Unitários front-end (Vitest) | `tests/vitest/` | 6 | ✅ Todos passam |
+| Unitários front-end (Vitest) | `tests/vitest/` | 2 | ✅ Todos passam |
 
 ## Bugs encontrados
 
@@ -67,7 +67,7 @@ Nenhum bug foi identificado. Consulte `docs/bugs.md` para detalhes.
 - Testes unitários .NET: rápidos, isolam a lógica de negócio com mocks.
 - Testes de integração .NET: usam SQLite in memory para validar comportamento real dos serviços e do EF Core.
 - E2E Playwright: garante que o front-end está acessível e a página carrega.
-- Vitest: testa funções puras e um componente React (Button) criado no próprio diretório de testes, demonstrando conhecimento em testes front-end.
+- Vitest: testa um componente React (Button) criado no próprio diretório de testes, demonstrando conhecimento em testes front-end sem dependências externas.
 
 ## Organização do repositório
 
@@ -80,10 +80,10 @@ tests/
 docs/
   bugs.md
 .github/workflows/
-  test.yml        # CI (opcional)
+  test.yml        # CI (GitHub Actions)
 README.md
 ```
 
 ## Observação
 
-Os serviços originais não expõem métodos de atualização e exclusão para categorias e transações, por isso esses testes não foram incluídos. A cobertura atual atende ao escopo funcional exigido (CRUD de pessoas, criação de categorias/transações, totais e regras de negócio).
+Os serviços originais não expõem métodos de atualização e exclusão para categorias e transações, por isso esses testes não foram incluídos. A cobertura atual atende ao escopo funcional exigido (CRUD de pessoas, criação de categorias/transações, totais e regras de negócio). O CI está configurado na raiz do repositório conforme recomendado pela documentação oficial do GitHub.
