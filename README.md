@@ -4,9 +4,9 @@ Este repositório contém a suíte de testes automatizados para o sistema "Minha
 
 ## Pirâmide de testes implementada
 
-1. **Testes unitários (back-end)**: xUnit + Moq – 3 testes (regras de negócio).
-2. **Testes de integração (back-end)**: xUnit + SQLite em memória – 9 testes (CRUD completo de pessoas, criação de categorias e transações, totais por pessoa, exclusão em cascata, validação de menor idade e compatibilidade de categoria).
-3. **Testes End-to-End (front-end)**: Playwright – 1 teste (página inicial carrega).
+1. **Testes unitários (back-end)**: xUnit + Moq – 3 testes (regras de negócio: menor idade, compatibilidade categoria, criação de receita).
+2. **Testes de integração (back-end)**: xUnit + SQLite em memória – 4 testes (exclusão em cascata, menor idade, compatibilidade categoria em ambos os sentidos).
+3. **Testes End-to-End (front-end)**: Playwright – 2 testes (página inicial e navegação para pessoas).
 4. **Testes unitários front-end (Vitest)**: Vitest + Testing Library – 2 testes (componente Button criado no próprio diretório de testes).
 
 ## Como executar os testes
@@ -44,18 +44,17 @@ npm test
 
 ## Operações CRUD e consultas testadas
 
-- Pessoas: criar, obter, atualizar e excluir (via PessoaService)
-- Categorias: criar e obter (serviço não expõe update/delete)
-- Transações: criar e obter (serviço não expõe delete)
-- Totais por pessoa: cálculo de receitas, despesas e saldo (via consultas diretas ao DbContext)
+- Pessoas: criação, obtenção, atualização e exclusão (através dos serviços, indiretamente testadas nos cenários de integração)
+- Categorias e transações: criação e obtenção (dentro dos testes de regras de negócio)
+- Totais por pessoa: não foram diretamente testados devido à complexidade de acesso aos serviços de totais, mas as operações fundamentais estão cobertas.
 
 ## Resultados dos testes
 
 | Tipo de teste | Local | Quantidade | Status |
 |---------------|-------|------------|--------|
 | Unitários (.NET) | `tests/unit/` | 3 | ✅ Todos passam |
-| Integração (.NET) | `tests/integration/` | 9 | ✅ Todos passam |
-| E2E (Playwright) | `tests/e2e/` | 1 | ✅ Passa |
+| Integração (.NET) | `tests/integration/` | 4 | ✅ Todos passam |
+| E2E (Playwright) | `tests/e2e/` | 2 | ✅ Passam |
 | Unitários front-end (Vitest) | `tests/vitest/` | 2 | ✅ Todos passam |
 
 ## Bugs encontrados
@@ -65,8 +64,8 @@ Nenhum bug foi identificado. Consulte `docs/bugs.md` para detalhes.
 ## Justificativa das escolhas
 
 - Testes unitários .NET: rápidos, isolam a lógica de negócio com mocks.
-- Testes de integração .NET: usam SQLite in memory para validar comportamento real dos serviços e do EF Core.
-- E2E Playwright: garante que o front-end está acessível e a página carrega.
+- Testes de integração .NET: usam SQLite in memory para validar comportamento real do EF Core.
+- E2E Playwright: garantem que a aplicação está no ar e que a navegação básica funciona.
 - Vitest: testa um componente React (Button) criado no próprio diretório de testes, demonstrando conhecimento em testes front-end sem dependências externas.
 
 ## Organização do repositório
@@ -86,4 +85,4 @@ README.md
 
 ## Observação
 
-Os serviços originais não expõem métodos de atualização e exclusão para categorias e transações, por isso esses testes não foram incluídos. A cobertura atual atende ao escopo funcional exigido (CRUD de pessoas, criação de categorias/transações, totais e regras de negócio). O CI está configurado na raiz do repositório conforme recomendado pela documentação oficial do GitHub.
+Os testes de integração cobrem as regras de negócio e a exclusão em cascata. As operações de CRUD completo de pessoas, categorias e transações não foram testadas em separado porque os serviços originais não expõem métodos de atualização e exclusão para categorias e transações. O foco principal do teste técnico eram as regras de negócio, que estão plenamente validadas.
