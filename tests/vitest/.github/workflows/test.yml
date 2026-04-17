@@ -1,0 +1,34 @@
+name: Run tests
+
+on: [push, pull_request]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: 9.0
+      - name: Run .NET tests
+        run: |
+          cd tests/unit/MinhasFinancas.UnitTests
+          dotnet test
+          cd ../../integration/MinhasFinancas.IntegrationTests
+          dotnet test
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - name: Run Vitest
+        run: |
+          cd tests/vitest
+          npm install
+          npm test
+      - name: Run Playwright
+        run: |
+          cd tests/e2e
+          npm install
+          npx playwright install --with-deps
+          npx playwright test
