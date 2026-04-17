@@ -245,3 +245,4 @@ C:\Users\santo\Documents\minhas-financas-testes\tests\integration\MinhasFinancas
 C:\Users\santo\Documents\minhas-financas-testes\tests\integration\MinhasFinancas.IntegrationTests\obj\Debug\net10.0\MinhasFinancas.IntegrationTests.pdb
 C:\Users\santo\Documents\minhas-financas-testes\tests\integration\MinhasFinancas.IntegrationTests\obj\Debug\net10.0\MinhasFinancas.IntegrationTests.genruntimeconfig.cache
 C:\Users\santo\Documents\minhas-financas-testes\tests\integration\MinhasFinancas.IntegrationTests\obj\Debug\net10.0\ref\MinhasFinancas.IntegrationTests.dll
+C:\Users\santo\Documents\minhas-financas-testes\tests\integration\MinhasFinancas.IntegrationTests\obj\Debug\net10.0\MinhasFinancas.IntegrationTests.sourcelink.json
