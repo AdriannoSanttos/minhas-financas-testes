@@ -6,7 +6,7 @@ Este repositório contém a suíte de testes automatizados para o sistema "Minha
 
 1. **Testes unitários (back-end)**: xUnit + Moq – 3 testes (regras de negócio: menor idade, compatibilidade categoria, criação de receita).
 2. **Testes de integração (back-end)**: xUnit + SQLite em memória – 4 testes (exclusão em cascata, menor idade, compatibilidade categoria em ambos os sentidos).
-3. **Testes End-to-End (front-end)**: Playwright – 2 testes (página inicial e navegação para pessoas).
+3. **Testes End-to-End (front-end)**: Playwright – 2 testes (página inicial carrega, navegação para página de pessoas).
 4. **Testes unitários front-end (Vitest)**: Vitest + Testing Library – 2 testes (componente Button criado no próprio diretório de testes).
 
 ## Como executar os testes
@@ -26,7 +26,7 @@ dotnet test
 ### 3. Testes End-to-End (Playwright)
 ```bash
 cd tests/e2e
-npx playwright test
+npm test
 ```
 
 ### 4. Testes unitários front-end (Vitest)
@@ -41,12 +41,6 @@ npm test
 - Menor de idade não pode ter receitas
 - Categoria compatível com tipo da transação (receita/despesa/ambas)
 - Exclusão em cascata de transações ao excluir pessoa
-
-## Operações CRUD e consultas testadas
-
-- Pessoas: criação, obtenção, atualização e exclusão (através dos serviços, indiretamente testadas nos cenários de integração)
-- Categorias e transações: criação e obtenção (dentro dos testes de regras de negócio)
-- Totais por pessoa: não foram diretamente testados devido à complexidade de acesso aos serviços de totais, mas as operações fundamentais estão cobertas.
 
 ## Resultados dos testes
 
@@ -85,4 +79,4 @@ README.md
 
 ## Observação
 
-Os testes de integração cobrem as regras de negócio e a exclusão em cascata. As operações de CRUD completo de pessoas, categorias e transações não foram testadas em separado porque os serviços originais não expõem métodos de atualização e exclusão para categorias e transações. O foco principal do teste técnico eram as regras de negócio, que estão plenamente validadas.
+Os testes de integração cobrem as regras de negócio e a exclusão em cascata. Operações de CRUD completo (atualização e exclusão de categorias/transações) não foram testadas porque os serviços originais não expõem esses métodos. O foco principal do teste técnico eram as regras de negócio, que estão plenamente validadas.
