@@ -7,21 +7,36 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+
       - name: Setup .NET
         uses: actions/setup-dotnet@v4
         with:
           dotnet-version: 9.0
+
+      - name: Restore .NET dependencies
+        run: |
+          dotnet restore tests/unit/MinhasFinancas.UnitTests/MinhasFinancas.UnitTests.csproj
+          dotnet restore tests/integration/MinhasFinancas.IntegrationTests/MinhasFinancas.IntegrationTests.csproj
+
       - name: Run .NET tests
         run: |
-          cd tests/unit/MinhasFinancas.UnitTests && dotnet test
-          cd ../integration/MinhasFinancas.IntegrationTests && dotnet test
+          dotnet test tests/unit/MinhasFinancas.UnitTests/MinhasFinancas.UnitTests.csproj --no-restore
+          dotnet test tests/integration/MinhasFinancas.IntegrationTests/MinhasFinancas.IntegrationTests.csproj --no-restore
+
       - name: Setup Node
         uses: actions/setup-node@v4
         with:
           node-version: 20
+
       - name: Run Vitest
         run: |
-          cd tests/vitest && npm install && npm test
+          cd tests/vitest
+          npm ci
+          npm test
+
       - name: Run Playwright (optional, needs front-end)
         run: |
-          cd tests/e2e && npm install && npx playwright test || echo "E2E tests skipped (no front-end)"
+          cd tests/e2e
+          npm ci
+          npx playwright install --with-deps
+          npx playwright test || echo "E2E tests skipped (no front-end)"

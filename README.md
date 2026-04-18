@@ -50,6 +50,13 @@ npm test
 - Transações: criação e obtenção (serviço não expõe delete)
 - Totais por pessoa: cálculo de receitas, despesas e saldo (via consultas diretas ao DbContext)
 
+## Detalhamento dos testes de integração
+
+- `RegrasNegocioIntegrationTests.cs`: 3 testes (menor idade, compatibilidade categoria nos dois sentidos)
+- `CascataIntegrationTest.cs`: 1 teste (exclusão em cascata)
+- `PessoaCrudIntegrationTests.cs`: 2 testes (atualização e exclusão de pessoa)
+- **Total: 6 testes de integração**
+
 ## Resultados dos testes
 
 | Tipo de teste | Local | Quantidade | Status |
