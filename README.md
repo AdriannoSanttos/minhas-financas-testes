@@ -7,7 +7,7 @@ Este repositório contém a suíte de testes automatizados para o sistema "Minha
 1. **Testes unitários (back-end)**: xUnit + Moq – 3 testes (regras de negócio).
 2. **Testes de integração (back-end)**: xUnit + SQLite em memória – 4 testes (exclusão em cascata, menor idade, compatibilidade categoria).
 3. **Testes End-to-End (front-end)**: Playwright – 2 testes (página inicial e navegação para pessoas).
-4. **Testes unitários front-end (Vitest)**: Vitest + Testing Library – 2 testes (componente Button auto-contido).
+4. **Testes unitários front-end (Vitest)**: Vitest + Testing Library – 2 testes (componente Button auto‑contido).
 
 ## Como executar os testes
 
@@ -76,6 +76,7 @@ docs/
 .github/workflows/
   test.yml        # CI (GitHub Actions)
 README.md
+.gitignore
 ```
 
 ## Observação

@@ -2000,7 +2000,7 @@
       "code": "NU1903",
       "level": "Warning",
       "warningLevel": 1,
-      "message": "Package 'Microsoft.Extensions.Caching.Memory' 8.0.0 has a known high severity vulnerability, https://github.com/advisories/GHSA-qj66-m88j-hmgj",
+      "message": "O pacote 'Microsoft.Extensions.Caching.Memory' 8.0.0 tem uma alta vulnerabilidade de gravidade conhecida, https://github.com/advisories/GHSA-qj66-m88j-hmgj",
       "libraryId": "Microsoft.Extensions.Caching.Memory",
       "targetGraphs": [
         "net10.0"

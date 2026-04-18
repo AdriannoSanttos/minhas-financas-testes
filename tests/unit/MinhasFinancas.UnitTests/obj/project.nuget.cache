@@ -37,7 +37,7 @@
     {
       "code": "NU1903",
       "level": "Warning",
-      "message": "Package 'Microsoft.Extensions.Caching.Memory' 8.0.0 has a known high severity vulnerability, https://github.com/advisories/GHSA-qj66-m88j-hmgj",
+      "message": "O pacote 'Microsoft.Extensions.Caching.Memory' 8.0.0 tem uma alta vulnerabilidade de gravidade conhecida, https://github.com/advisories/GHSA-qj66-m88j-hmgj",
       "projectPath": "C:\\Users\\santo\\Documents\\minhas-financas-testes\\tests\\unit\\MinhasFinancas.UnitTests\\MinhasFinancas.UnitTests.csproj",
       "warningLevel": 1,
       "filePath": "C:\\Users\\santo\\Documents\\minhas-financas-testes\\tests\\unit\\MinhasFinancas.UnitTests\\MinhasFinancas.UnitTests.csproj",
