@@ -5,7 +5,7 @@ Este repositório contém a suíte de testes automatizados para o sistema "Minha
 ## Pirâmide de testes implementada
 
 1. **Testes unitários (back-end)**: xUnit + Moq – 3 testes (regras de negócio).
-2. **Testes de integração (back-end)**: xUnit + SQLite em memória – 4 testes (exclusão em cascata, menor idade, compatibilidade categoria).
+2. **Testes de integração (back-end)**: xUnit + SQLite em memória – 6 testes (CRUD completo de pessoas + regras de negócio).
 3. **Testes End-to-End (front-end)**: Playwright – 2 testes (página inicial e navegação para pessoas).
 4. **Testes unitários front-end (Vitest)**: Vitest + Testing Library – 2 testes (componente Button auto‑contido).
 
@@ -43,13 +43,20 @@ npm test
 - Categoria compatível com tipo da transação (receita/despesa/ambas)
 - Exclusão em cascata de transações ao excluir pessoa
 
+## Operações CRUD testadas
+
+- Pessoas: criação, obtenção, atualização e exclusão (via PessoaService)
+- Categorias: criação e obtenção (serviço não expõe update/delete)
+- Transações: criação e obtenção (serviço não expõe delete)
+- Totais por pessoa: cálculo de receitas, despesas e saldo (via consultas diretas ao DbContext)
+
 ## Resultados dos testes
 
 | Tipo de teste | Local | Quantidade | Status |
 |---------------|-------|------------|--------|
 | Unitários (.NET) | `tests/unit/` | 3 | ✅ Todos passam |
-| Integração (.NET) | `tests/integration/` | 4 | ✅ Todos passam |
-| E2E (Playwright) | `tests/e2e/` | 2 | ✅ Passam |
+| Integração (.NET) | `tests/integration/` | 6 | ✅ Todos passam |
+| E2E (Playwright) | `tests/e2e/` | 2 | ✅ Passam (com front-end rodando) |
 | Unitários front-end (Vitest) | `tests/vitest/` | 2 | ✅ Todos passam |
 
 ## Bugs encontrados
@@ -59,7 +66,7 @@ Nenhum bug foi identificado. Consulte `docs/bugs.md` para detalhes.
 ## Justificativa das escolhas
 
 - Testes unitários .NET: rápidos, isolam a lógica de negócio com mocks.
-- Testes de integração .NET: usam SQLite in memory para validar comportamento real do EF Core.
+- Testes de integração .NET: usam SQLite in memory para validar comportamento real dos serviços e do EF Core.
 - E2E Playwright: garantem que a aplicação está no ar e a navegação básica funciona.
 - Vitest: testa um componente React (Button) criado no próprio diretório de testes, demonstrando conhecimento em testes front-end sem dependências externas.
 
@@ -81,4 +88,4 @@ README.md
 
 ## Observação
 
-Os testes de integração cobrem as regras de negócio e a exclusão em cascata. Operações de CRUD completo (atualização/exclusão de categorias/transações) não foram testadas porque os serviços originais não expõem esses métodos. O foco principal do teste técnico eram as regras de negócio, que estão plenamente validadas.
+Os testes de integração agora incluem atualização e exclusão de pessoas, completando o CRUD. As operações de atualização/exclusão para categorias e transações não foram testadas porque os serviços originais não expõem esses métodos. O CI está configurado para rodar os testes .NET e Vitest (auto-contidos); os testes E2E são executados apenas como verificação adicional (não obrigatórios no pipeline).
