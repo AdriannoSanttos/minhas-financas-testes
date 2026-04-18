@@ -95,4 +95,9 @@ README.md
 
 ## Observação
 
+### Limitações Conhecidas
+- As entidades `Transacao` e `Categoria` possuem propriedades com `private set`, o que obrigou o uso de reflexão (`SetPrivateProperty`) no teste `CascataIntegrationTest.cs`. Em um cenário real, seria ideal que a aplicação fornecesse construtores ou métodos públicos para testes.
+- O teste E2E utiliza seletores textuais (`getByRole`), que podem quebrar se o front-end for alterado. A aplicação original não fornece `data-testid` ou outros atributos dedicados para automação.
+- Os serviços de `Categoria` e `Transacao` não expõem métodos de atualização e exclusão, portanto esses fluxos não foram testados.
+
 Os testes de integração agora incluem atualização e exclusão de pessoas, completando o CRUD. As operações de atualização/exclusão para categorias e transações não foram testadas porque os serviços originais não expõem esses métodos. O CI está configurado para rodar os testes .NET e Vitest (auto-contidos); os testes E2E são executados apenas como verificação adicional (não obrigatórios no pipeline).
